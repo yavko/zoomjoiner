@@ -1,0 +1,13 @@
+.remove {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 2px 4px;
+  background: rgba(200, 0, 225, 0.7);
+  color: #ff0;
+  cursor: pointer;
+}
+
+li {
+  margin: 8px 0;
+  border-bottom: 1px dashed #e0e0e0;
+}
