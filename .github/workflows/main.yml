@@ -38,8 +38,4 @@ jobs:
         uses: actions/upload-artifact@v2.3.1
         with:
           name: build
-          path: ./dist
-          
-      - uses: release-drafter/release-drafter@v5
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          path: dist/
