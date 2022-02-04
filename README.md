@@ -4,7 +4,7 @@ App that literly does one thing, join zoom meetings. Why? Because.
 ## INSTALLATION :)
 - Go to releases and download a binary (no releases yet, so not applicable for now :( )
 - Download latest build from CI/CD nightly.link (not setup yet, so also not applicable)
-- [Build from source](/#building-from-source)
+- [Build from source](#building-from-source)
 
 ## Buidling from source
 1. Clone the repo:
