@@ -1,0 +1,34 @@
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.5.1
+        
+      - name: Install Neutralino CLI
+        run: npm install -g @neutralinojs/neu
+
+      - name: Download Neutralino Deps
+        run: neu update
+
+      - name: Build App
+        run: neu build
+          
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2.3.1
+        with:
+          name: build
+          path: ./dist/
