@@ -1,4 +1,6 @@
 # Zoom Joiner
+[![CI](https://github.com/yavko/zoomjoiner/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/yavko/zoomjoiner/actions/workflows/main.yml)
+<br />
 App that literly does one thing, join zoom meetings. Why? Because.
 
 ## INSTALLATION :)
