@@ -6,7 +6,7 @@ App that literly does one thing, join zoom meetings. Why? Because.
 - Download latest build from CI/CD nightly.link (not setup yet, so also not applicable)
 - [Build from source](#building-from-source)
 
-## Buidling from source
+## Building from source
 1. Clone the repo:
 ```bash
 # These are shell commands run in shell ;)
