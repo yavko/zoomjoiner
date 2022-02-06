@@ -1,0 +1,33 @@
+name: Package
+
+on:
+  workflow_run:
+    workflows: [Build]
+    types:
+      - completed
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install zip
+        uses: montudor/action-zip@v1
+        
+      - name: Download build
+        uses: actions/download-artifact@v2.1.0
+        with:
+          name: build
+          path: ./artifacts
+      
+      - name: Package Windows
+        run: zip -r windows.zip ./artifacts/zoomjoiner.neu/zoomjoiner.neu-win_x64.exe ./artifacts/zoomjoiner.neu/WebView2Loader.dll ./artifacts/zoomjoiner.neu/resources.neu
+      
+      - name: Package macOS
+        run: |
+          mkdir -p zoomjoiner.app/contents/MacOS
+          echo "" > zoomjoiner.app/contents/info.plist
+          cp ./artifacts/zoomjoiner.neu/zoomjoiner.neu-mac_x64 ./zoomjoiner.app/contents/MacOS/
+          cp ./artifacts/zoomjoiner.neu/resources.neu ./zoomjoiner.app/contents/MacOS/
+    
