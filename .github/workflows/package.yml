@@ -1,0 +1,44 @@
+name: Package
+
+on:
+  workflow_run:
+    workflows: [Build]
+    types:
+      - completed
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install 7z
+        run: sudo apt install P7zip-full
+        
+      - name: Download build
+        uses: actions/download-artifact@v2.1.0
+        with:
+          name: build
+          path: ./artifacts
+      
+      - name: Package Windows x86_64
+        run: 7z a windows.zip ./artifacts/zoomjoiner.neu/zoomjoiner.neu-win_x64.exe ./artifacts/zoomjoiner.neu/WebView2Loader.dll ./artifacts/zoomjoiner.neu/resources.neu
+      
+      - name: Package macOS x86_64
+        run: |
+          mkdir -p zoomjoiner.app/contents/MacOS
+          echo "" > zoomjoiner.app/contents/info.plist
+          cp ./artifacts/zoomjoiner.neu/zoomjoiner.neu-mac_x64 ./zoomjoiner.app/contents/MacOS/
+          cp ./artifacts/zoomjoiner.neu/resources.neu ./zoomjoiner.app/contents/MacOS/
+        
+      - name: Package Linux tar.gz x86_64
+        run: |
+          7z a linux.tar ./artifacts/zoomjoiner.neu/zoomjoiner.neu-linux_x64 ./artifacts/zoomjoiner.neu/resources.neu
+          7z a linux.tar.gz linux.tar
+          rm linux.tar
+        
+      - name: Upload Packages
+        uses: actions/upload-artifact@v2.3.1
+        with:
+          name: packages
+          path: ./
